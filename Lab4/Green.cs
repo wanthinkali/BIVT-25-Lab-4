@@ -108,10 +108,9 @@ namespace Lab4
                 if (array[i] > maxx)
                 {
                     maxx = array[i];
+                    ind_max = i;
                 }
             }
-
-            ind_max = Array.IndexOf(array, maxx);
 
             for (int i = 0; i < array.Length; i++)
             {
@@ -131,24 +130,49 @@ namespace Lab4
             List<int> ans = new List<int>();
             // code here
 
-            int maxx = -100000000;
+            //int maxx = -100000000;
+            //for (int i = 0; i < array.Length; i++)
+            //{
+            //    if (array[i] > maxx)
+            //    {
+            //        maxx = array[i];
+            //    }
+            //}
+
+            //for (int i = 0; i < array.Length; i++)
+            //{
+            //    if (array[i] == maxx)
+            //    {
+            //        ans.Add(i);
+            //    }
+            //}
+
+            //int[] answer = ans.ToArray();
+
+            int[] answer = null;
+
+            int max = int.MinValue, maxid = array.Length, cow = 0;
             for (int i = 0; i < array.Length; i++)
             {
-                if (array[i] > maxx)
+                if (max < array[i])
                 {
-                    maxx = array[i];
+                    cow = 0;
+                    max = array[i];
+                    maxid = i;
+                }
+                if (array[i] == max)
+                    cow++;
+            }
+            answer = new int[cow];
+            int j = 0;
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (max == array[i])
+                {
+                    answer[j++] = i;
                 }
             }
 
-            for (int i = 0; i < array.Length; i++)
-            {
-                if (array[i] == maxx)
-                {
-                    ans.Add(i);
-                }
-            }
-
-            int[] answer = ans.ToArray();
             // end
 
             return answer;
